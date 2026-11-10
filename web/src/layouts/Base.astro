@@ -1,0 +1,63 @@
+---
+// The wrapper every page uses: <head> SEO tags, header, footer and the chat widget.
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ChatWidget from "../components/ChatWidget.astro";
+import site from "../data/site.json";
+import { CONTACT_EMAIL } from "../lib/config";
+
+interface Props {
+  title: string;        // shown in the browser tab and Google results
+  description: string;  // the grey text under the title in Google results
+  noindex?: boolean;    // true = ask search engines not to list this page
+}
+const { title, description, noindex = false } = Astro.props;
+
+const fullTitle = title === site.name ? `${site.name} | Websites and AI receptionists for local businesses` : `${title} | ${site.name}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+// schema.org "Organization" data: helps Google understand who we are.
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: site.name,
+  url: new URL("/", Astro.site).href,
+  logo: new URL("/logo.svg", Astro.site).href,
+  description: site.description,
+  email: CONTACT_EMAIL,
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="theme-color" content="#1d4ed8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Social sharing previews (Facebook, WhatsApp, LinkedIn...) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:p-2">Skip to content</a>
+    <Header />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <ChatWidget />
+  </body>
+</html>

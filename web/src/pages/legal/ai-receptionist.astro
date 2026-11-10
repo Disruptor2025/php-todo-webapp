@@ -1,0 +1,50 @@
+---
+import Legal from "../../layouts/Legal.astro";
+import { CONTACT_EMAIL } from "../../lib/config";
+---
+<Legal title="About our AI receptionist" description="Our receptionist is an AI. Here's what that means, and how call and chat data is handled." updated="[DATE]">
+  <div class="mb-8 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900" data-placeholder>
+    <strong>Draft.</strong> Items in [square brackets] must be filled in before launch.
+  </div>
+
+  <h2>It's an AI, and it says so</h2>
+  <p>
+    When you call or chat with a business that uses Prezence Voice (including Prezence itself), you are talking to an
+    <strong>AI assistant</strong>, not a person. It tells you this at the start of every call and chat.
+    If you'd prefer to speak to a person, just say so and it will take a message or pass you on where the business has set that up.
+  </p>
+
+  <h2>What it can and can't do</h2>
+  <ul>
+    <li>It can answer common questions using information the business gave us (services, prices, opening hours).</li>
+    <li>It can take messages and booking requests and pass them to the business.</li>
+    <li>It can make mistakes. Important details (prices, appointments) are confirmed by the business.</li>
+    <li>It will never ask for card numbers, passwords or other sensitive details. Please don't share them.</li>
+  </ul>
+
+  <h2>What we record</h2>
+  <ul>
+    <li><strong>Calls:</strong> [whether calls are recorded], a written transcript, and the caller's phone number.</li>
+    <li><strong>Chats:</strong> the messages you type and a random session ID. We don't use advertising cookies in the chat.</li>
+    <li><strong>Summaries:</strong> a short summary of each call or chat is sent to the business so they can follow up.</li>
+  </ul>
+
+  <h2>How it's used</h2>
+  <p>
+    Call and chat data is used to answer you, to pass your message to the business, and to fix problems with the service.
+    The text of the conversation is processed by our AI provider to generate replies. [Confirm the provider's data use and retention terms.]
+    We don't sell this data.
+  </p>
+
+  <h2>Who can see it</h2>
+  <p>The business you contacted, and Prezence staff who need it to run and support the service.</p>
+
+  <h2>How long we keep it</h2>
+  <p>[Recordings: X days. Transcripts and summaries: X months.] After that it is deleted.</p>
+
+  <h2>Your choices</h2>
+  <p>
+    You can ask for a copy of your call or chat data, or ask us to delete it, by emailing
+    <a class="underline" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. See our <a class="underline" href="/legal/privacy">privacy policy</a> for more.
+  </p>
+</Legal>

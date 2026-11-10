@@ -1,0 +1,74 @@
+---
+import Base from "../layouts/Base.astro";
+import { API_URL, CONTACT_EMAIL } from "../lib/config";
+---
+<Base title="Get a free website preview" description="Tell us about your business and we'll build a free preview of your new website. No card needed, no obligation.">
+  <section class="bg-gradient-to-b from-brand-50 to-white py-14">
+    <div class="container-page max-w-2xl">
+      <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">Get a free website preview</h1>
+      <p class="mt-4 text-lg text-ink-700">Tell us a little about your business. We'll build a preview of your new website and send it to you. Free, with no obligation.</p>
+
+      <!-- action/method let the form still work if JavaScript is off. -->
+      <form id="preview-form" class="mt-8 space-y-5 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8"
+            action={`${API_URL}/leads/inbound`} method="post" data-success-id="preview-success" novalidate={false}>
+        <div>
+          <label class="label" for="business_name">Business name</label>
+          <input class="field" id="business_name" name="business_name" required maxlength="120" autocomplete="organization" />
+        </div>
+        <div>
+          <label class="label" for="city">Town or city</label>
+          <input class="field" id="city" name="city" required maxlength="80" autocomplete="address-level2" />
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label class="label" for="phone">Phone number</label>
+            <input class="field" id="phone" name="phone" type="tel" required maxlength="30" autocomplete="tel" inputmode="tel" />
+          </div>
+          <div>
+            <label class="label" for="email">Email</label>
+            <input class="field" id="email" name="email" type="email" required maxlength="160" autocomplete="email" />
+          </div>
+        </div>
+        <div>
+          <label class="label" for="google_maps_url">Google Maps link to your business <span class="font-normal text-ink-500">(optional)</span></label>
+          <input class="field" id="google_maps_url" name="google_maps_url" type="url" maxlength="500" placeholder="https://maps.app.goo.gl/..." aria-describedby="maps-help" />
+          <p id="maps-help" class="mt-1 text-sm text-ink-500">Find your business on Google Maps, tap "Share" and paste the link here. It helps us get your details right.</p>
+        </div>
+
+        <!-- Spam trap: hidden from people, but bots fill it in. -->
+        <div class="hidden" aria-hidden="true">
+          <label for="website">Leave this empty</label>
+          <input id="website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <p class="text-sm text-ink-500">We'll only use these details to build your preview and contact you about it. See our <a class="underline" href="/legal/privacy">privacy policy</a>.</p>
+        <button type="submit" class="btn-primary w-full text-lg">Get my free preview</button>
+        <p data-status role="status" aria-live="polite" class="text-sm"></p>
+      </form>
+
+      <div id="preview-success" hidden tabindex="-1" class="mt-8 rounded-2xl border border-green-200 bg-green-50 p-8">
+        <h2 class="text-2xl font-bold">Thanks! We're on it.</h2>
+        <p class="mt-2 text-ink-700">We'll build your free preview and be in touch within a few days. Questions? Email <a class="underline" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+      </div>
+    </div>
+  </section>
+</Base>
+<script>
+  import { wireForm, isGoogleMapsLink } from "../scripts/forms";
+  const form = document.getElementById("preview-form") as HTMLFormElement;
+  wireForm({
+    form,
+    url: form.action,
+    source: "website_preview_form",
+    validate: (d) => {
+      if (!form.checkValidity()) {
+        form.reportValidity(); // shows the browser's own "please fill in" hints
+        return "Please fill in all the required fields.";
+      }
+      if (d.google_maps_url && !isGoogleMapsLink(d.google_maps_url)) {
+        return "That doesn't look like a Google Maps link. You can leave it empty if you're not sure.";
+      }
+      return null;
+    },
+  });
+</script>

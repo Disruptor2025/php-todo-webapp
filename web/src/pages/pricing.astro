@@ -1,0 +1,99 @@
+---
+import Base from "../layouts/Base.astro";
+import PricingCards from "../components/PricingCards.astro";
+import CtaBand from "../components/CtaBand.astro";
+import pricing from "../data/pricing.json";
+import { money } from "../lib/config";
+
+// Turns a comparison value into what the table shows: true -> ✓, false -> —, text stays text.
+const cell = (v: boolean | string) => (v === true ? "✓" : v === false ? "—" : v);
+const label = (v: boolean | string) => (v === true ? "Included" : v === false ? "Not included" : v);
+type Row = { feature: string; [tierId: string]: boolean | string };
+const rows = pricing.comparison as Row[];
+---
+<Base title="Pricing" description="Simple monthly plans for a website, an AI receptionist and local marketing. Or pay once for your website. No long contracts.">
+  <section class="bg-gradient-to-b from-brand-50 to-white py-14">
+    <div class="container-page text-center">
+      <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">Simple, honest pricing</h1>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-ink-700">No hidden fees. No long contracts. Start with a free preview of your website.</p>
+    </div>
+  </section>
+
+  <section class="py-10" aria-labelledby="plans-heading">
+    <h2 id="plans-heading" class="sr-only">Plans</h2>
+    <div class="container-page"><PricingCards /></div>
+  </section>
+
+  <!-- Full comparison table -->
+  <section id="compare" class="py-10">
+    <div class="container-page">
+      <h2 class="section-title text-center">Compare plans</h2>
+      <!-- On small phones the table scrolls sideways inside this box, not the whole page. -->
+      <div class="mt-8 overflow-x-auto rounded-2xl border border-slate-200">
+        <table class="w-full min-w-[560px] text-left">
+          <caption class="sr-only">What each plan includes</caption>
+          <thead class="bg-slate-50">
+            <tr>
+              <th scope="col" class="p-4 font-semibold">Feature</th>
+              {pricing.tiers.map((t) => (
+                <th scope="col" class="p-4 text-center font-semibold">
+                  {t.name}<br /><span class="text-sm font-normal text-ink-500">{money(t.monthly)}/month</span>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200">
+            {rows.map((row) => (
+              <tr>
+                <th scope="row" class="p-4 font-normal text-ink-700">{row.feature}</th>
+                {pricing.tiers.map((t) => (
+                  <td class="p-4 text-center" aria-label={label(row[t.id])}>
+                    <span aria-hidden="true" class:list={[row[t.id] === true && "font-bold text-brand-600", row[t.id] === false && "text-ink-500"]}>{cell(row[t.id])}</span>
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- One-time option -->
+  <section id="one-time" class="py-10">
+    <div class="container-page">
+      <div class="grid gap-6 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-10 md:grid-cols-2">
+        <div>
+          <h2 class="text-2xl font-bold">{pricing.oneTime.name}</h2>
+          <p class="mt-3 text-ink-700">{pricing.oneTime.description}</p>
+          <p class="mt-5">
+            <span class="text-4xl font-bold" data-price>{money(pricing.oneTime.price)}</span> <span class="text-ink-500">one time</span>
+          </p>
+          <p class="text-ink-500">then <span data-price>{money(pricing.oneTime.hostingMonthly)}</span>/month for hosting and domain</p>
+        </div>
+        <ul class="space-y-2 self-center">
+          {pricing.oneTime.features.map((f) => <li class="flex gap-2 text-ink-700"><span aria-hidden="true" class="font-bold text-brand-600">✓</span>{f}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add-ons -->
+  <section id="addons" class="py-10">
+    <div class="container-page">
+      <h2 class="section-title text-center">Add-ons</h2>
+      <p class="mt-3 text-center text-ink-700">Add these to any plan.</p>
+      <div class="mx-auto mt-8 grid max-w-4xl gap-6 md:grid-cols-2">
+        {pricing.addons.map((a) => (
+          <article class="rounded-2xl border border-slate-200 p-6" data-addon={a.name}>
+            <h3 class="text-lg font-bold">{a.name}</h3>
+            <p class="mt-1"><span class="text-2xl font-bold" data-price>{money(a.price)}</span><span class="text-ink-500">/{a.per}</span></p>
+            <p class="mt-2 text-ink-700">{a.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

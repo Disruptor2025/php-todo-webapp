@@ -1,0 +1,10 @@
+---
+// Puts the Prezence receptionist chat bubble on the page.
+// The widget code itself lives in /receptionist/widget so client sites can reuse it.
+import { API_URL } from "../lib/config";
+---
+<prezence-chat api-url={API_URL} business-id="prezence" business-name="Prezence" privacy-url="/legal/ai-receptionist"></prezence-chat>
+<script>
+  // Astro bundles this into a small file that loads after the page is visible.
+  import "../../../receptionist/widget/chat-widget.js";
+</script>

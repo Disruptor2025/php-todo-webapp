@@ -1,0 +1,23 @@
+---
+// "Results" section. Hidden until data/results.json has REAL entries.
+// Each entry: { "quote": "...", "name": "...", "business": "...", "permission": true }
+// Only entries with "permission": true are shown, so nothing goes up by accident.
+import results from "../data/results.json";
+type Result = { quote: string; name: string; business: string; permission?: boolean };
+const shown = (results as Result[]).filter((r) => r.permission === true);
+---
+{shown.length > 0 && (
+  <section id="results" class="bg-slate-50 py-16">
+    <div class="container-page">
+      <h2 class="section-title text-center">Results from real customers</h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {shown.map((r) => (
+          <figure class="rounded-2xl border border-slate-200 bg-white p-6">
+            <blockquote class="text-ink-700">"{r.quote}"</blockquote>
+            <figcaption class="mt-4 text-sm font-semibold">{r.name}, {r.business}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

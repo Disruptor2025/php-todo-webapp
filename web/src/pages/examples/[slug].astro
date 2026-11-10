@@ -1,0 +1,55 @@
+---
+// One demo website per made-up business in data/examples.json.
+import Base from "../../layouts/Base.astro";
+import examples from "../../data/examples.json";
+
+export function getStaticPaths() {
+  return examples.map((ex) => ({ params: { slug: ex.slug }, props: { ex } }));
+}
+const { ex } = Astro.props;
+---
+<Base title={`${ex.name} (demo site)`} description={`Example website for ${ex.name}, a made-up ${ex.type.toLowerCase()} used to show what Prezence builds.`}>
+  <!-- Clear banner so nobody mistakes this for a real business. -->
+  <div class="bg-accent-400 py-2 text-center text-sm font-semibold text-ink-900" data-demo-banner>
+    Demo website for a fictional business. {ex.name} is not a real company.
+    <a href="/examples" class="underline">Back to examples</a>
+  </div>
+
+  <div style={`--ex:${ex.color}`}>
+    <section class="py-16 text-white" style="background:var(--ex)">
+      <div class="container-page">
+        <p class="text-sm uppercase tracking-wide">{ex.type} in {ex.town}</p>
+        <h1 class="mt-2 text-4xl font-extrabold sm:text-5xl">{ex.name}</h1>
+        <p class="mt-3 max-w-xl text-xl">{ex.tagline}</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <span class="btn bg-white" style="color:var(--ex)">Call now</span>
+          <span class="btn border border-white/70 text-white">Book online</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12">
+      <div class="container-page grid gap-10 md:grid-cols-2">
+        <div>
+          <h2 class="text-2xl font-bold">About us</h2>
+          <p class="mt-3 text-ink-700">{ex.about}</p>
+          <h2 class="mt-8 text-2xl font-bold">Opening hours</h2>
+          <p class="mt-3 text-ink-700">{ex.hours}</p>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold">Services</h2>
+          <ul class="mt-3 grid gap-3">
+            {ex.services.map((s) => <li class="rounded-xl border border-slate-200 p-4 font-medium">{s}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="py-12">
+    <div class="container-page rounded-2xl bg-slate-50 p-8 text-center">
+      <p class="text-lg font-semibold">Want a website like this for your business?</p>
+      <a href="/preview" class="btn-primary mt-4">Get a free website preview</a>
+    </div>
+  </section>
+</Base>

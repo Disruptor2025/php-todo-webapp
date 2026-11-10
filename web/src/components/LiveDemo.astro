@@ -1,0 +1,41 @@
+---
+// Live demo: try the AI receptionist for a made-up business, by chat or by phone.
+import site from "../data/site.json";
+import { DEMO_PHONE } from "../lib/config";
+const tel = DEMO_PHONE.replace(/[^\d+]/g, ""); // "+1 (555) 010-0000" -> "+15550100000"
+---
+<section id="demo" class="bg-brand-800 py-16 text-white">
+  <div class="container-page grid items-center gap-10 md:grid-cols-2">
+    <div>
+      <h2 class="section-title">Try our AI receptionist now</h2>
+      <p class="mt-4 text-lg text-brand-100">
+        Pretend you're a customer of <strong>{site.demo.businessName}</strong>. Ask about prices, opening hours, or book a visit.
+        This is exactly what your customers would get.
+      </p>
+      <p class="mt-3 text-sm text-brand-100">{site.demo.note}</p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <button type="button" class="btn bg-white text-brand-800 hover:bg-brand-50" id="demo-chat"
+          data-business-id={site.demo.businessId} data-business-name={site.demo.businessName}>
+          Chat with the demo
+        </button>
+        {tel && <a class="btn border border-white/60 text-white hover:bg-white/10" href={`tel:${tel}`} id="demo-call">Call the demo: {DEMO_PHONE}</a>}
+      </div>
+    </div>
+    <ul class="space-y-3 rounded-2xl bg-white/10 p-6 text-brand-50">
+      <li>✓ Answers every call and chat, day or night</li>
+      <li>✓ Knows your services, prices and opening hours</li>
+      <li>✓ Takes messages and booking requests</li>
+      <li>✓ Sends you a text summary right away</li>
+      <li>✓ Always tells callers it's an AI assistant</li>
+    </ul>
+  </div>
+</section>
+<script>
+  // Opens the chat bubble, switched to the demo business.
+  const btn = document.getElementById("demo-chat");
+  btn?.addEventListener("click", () => {
+    window.dispatchEvent(new CustomEvent("prezence-chat:open", {
+      detail: { businessId: btn.dataset.businessId, businessName: btn.dataset.businessName },
+    }));
+  });
+</script>

@@ -1,0 +1,30 @@
+---
+import site from "../data/site.json";
+import { CONTACT_EMAIL } from "../lib/config";
+const year = new Date().getFullYear();
+---
+<footer class="mt-16 border-t border-slate-200 bg-slate-50">
+  <div class="container-page grid gap-8 py-10 sm:grid-cols-3">
+    <div>
+      <p class="text-lg font-bold">Prezence</p>
+      <p class="mt-2 text-sm text-ink-500">Websites, AI receptionists and simple marketing for local businesses.</p>
+      <p class="mt-2 text-sm"><a class="text-brand-700 underline" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
+    </div>
+    <nav aria-label="Footer">
+      <p class="font-semibold">Explore</p>
+      <ul class="mt-2 space-y-1 text-sm text-ink-700">
+        {site.nav.map((i) => <li><a class="hover:underline" href={i.href}>{i.label}</a></li>)}
+        <li><a class="hover:underline" href="/preview">Free website preview</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Legal">
+      <p class="font-semibold">Legal</p>
+      <ul class="mt-2 space-y-1 text-sm text-ink-700">
+        <li><a class="hover:underline" href="/legal/privacy">Privacy policy</a></li>
+        <li><a class="hover:underline" href="/legal/terms">Terms of service</a></li>
+        <li><a class="hover:underline" href="/legal/ai-receptionist">About our AI receptionist</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="container-page pb-8 text-xs text-ink-500">&copy; {year} Prezence. All rights reserved.</p>
+</footer>

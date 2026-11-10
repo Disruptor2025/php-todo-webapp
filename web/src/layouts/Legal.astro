@@ -1,0 +1,12 @@
+---
+import Base from "./Base.astro";
+interface Props { title: string; description: string; updated: string; }
+const { title, description, updated } = Astro.props;
+---
+<Base title={title} description={description}>
+  <article class="container-page max-w-3xl py-14">
+    <h1 class="text-4xl font-extrabold tracking-tight">{title}</h1>
+    <p class="mt-2 text-sm text-ink-500">Last updated: {updated}</p>
+    <div class="prose-legal mt-8"><slot /></div>
+  </article>
+</Base>

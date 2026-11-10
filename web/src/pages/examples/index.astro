@@ -1,0 +1,35 @@
+---
+import Base from "../../layouts/Base.astro";
+import CtaBand from "../../components/CtaBand.astro";
+import examples from "../../data/examples.json";
+---
+<Base title="Example websites" description="See example websites we've built for made-up local businesses: a plumber, a hair salon, a clinic and a restaurant.">
+  <section class="bg-gradient-to-b from-brand-50 to-white py-14">
+    <div class="container-page text-center">
+      <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">Example websites</h1>
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-ink-700">
+        Here's the kind of website we'll build for you. These businesses are <strong>made up</strong>, so you can see real designs without us showing anyone's business without permission.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-10">
+    <div class="container-page grid gap-6 sm:grid-cols-2">
+      {examples.map((ex) => (
+        <a href={`/examples/${ex.slug}`} class="group overflow-hidden rounded-2xl border border-slate-200 transition hover:shadow-lg" data-example={ex.slug}>
+          <!-- A mini "screenshot" drawn with HTML, so there are no heavy images to load. -->
+          <div class="p-6 text-white" style={`background:${ex.color}`}>
+            <p class="text-xs uppercase tracking-wide">{ex.type} · {ex.town}</p>
+            <p class="mt-2 text-2xl font-bold">{ex.name}</p>
+            <p class="mt-1">{ex.tagline}</p>
+          </div>
+          <div class="flex items-center justify-between p-4">
+            <span class="text-sm text-ink-500">Demo site · fictional business</span>
+            <span class="font-semibold text-brand-700 group-hover:underline">View site →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+  <CtaBand />
+</Base>

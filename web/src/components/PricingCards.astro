@@ -1,0 +1,22 @@
+---
+// The 3 plan cards. Prices come from data/pricing.json only.
+import pricing from "../data/pricing.json";
+import { money } from "../lib/config";
+---
+<div class="grid gap-6 md:grid-cols-3">
+  {pricing.tiers.map((tier) => (
+    <article class:list={["relative flex flex-col rounded-2xl border bg-white p-6", tier.highlight ? "border-brand-600 shadow-lg ring-1 ring-brand-600" : "border-slate-200"]} data-tier={tier.id}>
+      {tier.highlight && <p class="absolute -top-3 left-6 rounded-full bg-accent-400 px-3 py-0.5 text-xs font-semibold text-ink-900">Most popular</p>}
+      <h3 class="text-xl font-bold">{tier.name}</h3>
+      <p class="mt-1 text-ink-500">{tier.tagline}</p>
+      <p class="mt-4"><span class="text-4xl font-bold" data-price>{money(tier.monthly)}</span><span class="text-ink-500">/month</span></p>
+      {tier.setup > 0 ? <p class="text-sm text-ink-500">+ {money(tier.setup)} one-time setup</p> : <p class="text-sm text-ink-500">No setup fee</p>}
+      <ul class="mt-5 flex-1 space-y-2">
+        {tier.features.map((f) => (
+          <li class="flex gap-2 text-ink-700"><span aria-hidden="true" class="font-bold text-brand-600">✓</span>{f}</li>
+        ))}
+      </ul>
+      <a href="/preview" class:list={["mt-6", tier.highlight ? "btn-primary" : "btn-secondary"]}>Get a free preview</a>
+    </article>
+  ))}
+</div>

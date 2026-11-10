@@ -1,0 +1,91 @@
+{
+  "_readme": "ALL prices on the site come from this file. The numbers below are PLACEHOLDERS - change them before launch.",
+  "currency": "$",
+  "tiers": [
+    {
+      "id": "site",
+      "name": "Prezence Site",
+      "tagline": "A website that gets you found",
+      "monthly": 49,
+      "setup": 0,
+      "highlight": false,
+      "features": [
+        "A professional website, built for you",
+        "Your own web address (domain) included",
+        "Hosting, security and updates included",
+        "Looks great on phones",
+        "Shows up on Google"
+      ]
+    },
+    {
+      "id": "voice",
+      "name": "Prezence Voice",
+      "tagline": "Never miss a call again",
+      "monthly": 149,
+      "setup": 0,
+      "highlight": true,
+      "features": [
+        "Everything in Prezence Site",
+        "AI receptionist answers calls 24/7",
+        "Chat on your website, answered instantly",
+        "Takes messages and booking requests",
+        "Texts you a summary of every call"
+      ]
+    },
+    {
+      "id": "grow",
+      "name": "Prezence Grow",
+      "tagline": "Stay busy all year",
+      "monthly": 249,
+      "setup": 0,
+      "highlight": false,
+      "features": [
+        "Everything in Prezence Voice",
+        "Weekly posts on your Google profile",
+        "Social media posts written for you",
+        "Polite replies to your Google reviews",
+        "Monthly report in plain English"
+      ]
+    }
+  ],
+  "oneTime": {
+    "name": "Own your website",
+    "price": 799,
+    "hostingMonthly": 15,
+    "description": "Prefer to pay once? We build your website for a single fee. You then pay only a small monthly amount for hosting and your web address.",
+    "features": [
+      "Same professional website as Prezence Site",
+      "Pay once for the build",
+      "Small monthly fee for hosting and domain",
+      "Add Voice or Grow any time"
+    ]
+  },
+  "addons": [
+    {
+      "name": "Take payments",
+      "price": 19,
+      "per": "month",
+      "description": "Let customers pay deposits or invoices online by card."
+    },
+    {
+      "name": "Online store",
+      "price": 39,
+      "per": "month",
+      "description": "Sell products on your website, with stock and orders in one place."
+    }
+  ],
+  "comparison": [
+    { "feature": "Professional website", "site": true, "voice": true, "grow": true },
+    { "feature": "Domain and hosting included", "site": true, "voice": true, "grow": true },
+    { "feature": "Changes on request", "site": "2 per month", "voice": "5 per month", "grow": "Unlimited" },
+    { "feature": "Shows up on Google", "site": true, "voice": true, "grow": true },
+    { "feature": "AI receptionist for phone calls", "site": false, "voice": true, "grow": true },
+    { "feature": "Website chat answered instantly", "site": false, "voice": true, "grow": true },
+    { "feature": "Call summaries by text", "site": false, "voice": true, "grow": true },
+    { "feature": "Google profile posts", "site": false, "voice": false, "grow": "Weekly" },
+    { "feature": "Social media posts", "site": false, "voice": false, "grow": "3 per week" },
+    { "feature": "Replies to Google reviews", "site": false, "voice": false, "grow": true },
+    { "feature": "Monthly report", "site": false, "voice": false, "grow": true },
+    { "feature": "Cancel any time", "site": true, "voice": true, "grow": true }
+  ]
+}

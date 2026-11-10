@@ -1,0 +1,22 @@
+---
+import Legal from "../../layouts/Legal.astro";
+import PlaceholderNotice from "../../components/PlaceholderNotice.astro";
+import { CONTACT_EMAIL } from "../../lib/config";
+---
+<Legal title="Privacy policy" description="How Prezence collects, uses and protects your information." updated="[DATE]">
+  <PlaceholderNotice />
+  <h2>Who we are</h2>
+  <p>[Company legal name, address and registration number.]</p>
+  <h2>What we collect</h2>
+  <p>[Details you give us in forms, chat messages, call recordings and transcripts, and basic website usage data.]</p>
+  <h2>How we use it</h2>
+  <p>[To build your website preview, contact you, provide our services, and improve them.]</p>
+  <h2>Who we share it with</h2>
+  <p>[Service providers we use, e.g. hosting, payments, telephony and AI processing.]</p>
+  <h2>How long we keep it</h2>
+  <p>[Retention periods.]</p>
+  <h2>Your rights</h2>
+  <p>[Access, correction, deletion, objection, and how to complain to a regulator.]</p>
+  <h2>Contact</h2>
+  <p>Email <a class="underline" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+</Legal>

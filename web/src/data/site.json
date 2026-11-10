@@ -1,0 +1,14 @@
+{
+  "name": "Prezence",
+  "description": "Prezence builds websites, AI receptionists and simple marketing for small local businesses. Get found online and never miss a call.",
+  "nav": [
+    { "label": "Home", "href": "/" },
+    { "label": "Examples", "href": "/examples" },
+    { "label": "Pricing", "href": "/pricing" }
+  ],
+  "demo": {
+    "businessId": "demo-copperline-plumbing",
+    "businessName": "Copperline Plumbing",
+    "note": "Copperline Plumbing is a made-up business we use to show how the receptionist works."
+  }
+}

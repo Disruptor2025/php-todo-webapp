@@ -1,0 +1,46 @@
+[
+  {
+    "slug": "copperline-plumbing",
+    "name": "Copperline Plumbing",
+    "type": "Plumber",
+    "town": "Elmsworth",
+    "color": "#0e7490",
+    "tagline": "Fast, friendly plumbing. 24/7 emergency call-outs.",
+    "about": "A family-run plumbing team fixing leaks, boilers and blocked drains across Elmsworth for over 15 years.",
+    "services": ["Emergency repairs", "Boiler servicing", "Bathroom fitting", "Blocked drains"],
+    "hours": "Mon-Sat 7am-7pm, emergencies 24/7"
+  },
+  {
+    "slug": "juniper-hair-studio",
+    "name": "Juniper Hair Studio",
+    "type": "Hair salon",
+    "town": "Elmsworth",
+    "color": "#9d174d",
+    "tagline": "Cuts, colour and calm. Book in minutes.",
+    "about": "A relaxed neighbourhood salon with four stylists, specialising in colour and curly hair.",
+    "services": ["Cut and finish", "Colour and highlights", "Curly hair care", "Bridal styling"],
+    "hours": "Tue-Sat 9am-6pm, late night Thursday"
+  },
+  {
+    "slug": "riverside-family-clinic",
+    "name": "Riverside Family Clinic",
+    "type": "Clinic",
+    "town": "Elmsworth",
+    "color": "#047857",
+    "tagline": "Caring physiotherapy for the whole family.",
+    "about": "Physiotherapy and sports massage for all ages, with same-week appointments.",
+    "services": ["Physiotherapy", "Sports massage", "Back and neck pain", "Post-surgery rehab"],
+    "hours": "Mon-Fri 8am-8pm, Sat 9am-1pm"
+  },
+  {
+    "slug": "nonnas-table",
+    "name": "Nonna's Table",
+    "type": "Restaurant",
+    "town": "Elmsworth",
+    "color": "#b45309",
+    "tagline": "Homemade pasta, the way Nonna made it.",
+    "about": "A cosy Italian kitchen serving fresh pasta, wood-fired pizza and the best tiramisu in town.",
+    "services": ["Dine in", "Takeaway", "Private parties", "Catering"],
+    "hours": "Wed-Sun 12pm-10pm"
+  }
+]

@@ -1,0 +1,15 @@
+# Cloudflare Pages response headers (https://developers.cloudflare.com/pages/configuration/headers/)
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Hidden page: also tell search engines via a header.
+/founders
+  X-Robots-Tag: noindex
+
+# Built JS/CSS files have a content hash in their name, so they can be cached "forever".
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable

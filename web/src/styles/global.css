@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+/* Brand colours. Use them in classes like bg-brand-600 or text-ink-900. */
+@theme {
+  --color-brand-50: #eef6ff;
+  --color-brand-100: #d9eaff;
+  --color-brand-600: #1d4ed8;
+  --color-brand-700: #1e40af;
+  --color-brand-800: #1e3a8a;
+  --color-accent-400: #fbbf24;
+  --color-ink-900: #0f172a;
+  --color-ink-700: #334155;
+  --color-ink-500: #64748b;
+  /* System fonts: look native and need no download (good for speed). */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { @apply bg-white text-ink-900 antialiased; }
+
+/* Reusable bits so pages stay short and consistent.
+   (Tailwind 4: "@utility" makes a class usable like any built-in one.) */
+@utility container-page { @apply mx-auto w-full max-w-6xl px-4 sm:px-6; }
+@utility btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600; }
+@utility btn-primary { @apply btn bg-brand-600 text-white hover:bg-brand-700; }
+@utility btn-secondary { @apply btn border border-slate-300 bg-white text-ink-900 hover:bg-slate-50; }
+@utility section-title { @apply text-3xl font-bold tracking-tight sm:text-4xl; }
+@utility field { @apply mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2.5 text-base focus:border-brand-600 focus:ring-2 focus:ring-brand-100 focus:outline-none; }
+@utility label { @apply block text-sm font-medium text-ink-700; }
+
+/* Simple styling for long text pages (legal pages). */
+.prose-legal h2 { @apply mt-8 mb-2 text-xl font-semibold; }
+.prose-legal p, .prose-legal li { @apply text-ink-700 leading-relaxed; }
+.prose-legal ul { @apply mb-3 list-disc space-y-1 pl-6; }
+.prose-legal p { @apply mb-3; }

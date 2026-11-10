@@ -1,0 +1,56 @@
+---
+// Hidden page: not in the menu, not in the sitemap, and marked "noindex" for search engines.
+// Share the link directly with people you want on the waitlist.
+import Base from "../layouts/Base.astro";
+import { API_URL } from "../lib/config";
+---
+<Base title="Prezence for Founders: join the waitlist" description="Join the waitlist for Prezence for Founders." noindex>
+  <section class="bg-gradient-to-b from-brand-50 to-white py-16">
+    <div class="container-page max-w-2xl">
+      <p class="font-semibold text-brand-700">Coming soon</p>
+      <h1 class="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl">Prezence for Founders</h1>
+      <p class="mt-4 text-lg text-ink-700">
+        A done-for-you presence on LinkedIn for founders, written in your voice and with your approval.
+        We're building it now. Join the waitlist to hear first and help shape it.
+      </p>
+
+      <form id="waitlist-form" class="mt-8 space-y-5 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8"
+            action={`${API_URL}/leads/waitlist`} method="post" data-success-id="waitlist-success">
+        <div>
+          <label class="label" for="name">Your name</label>
+          <input class="field" id="name" name="name" required maxlength="120" autocomplete="name" />
+        </div>
+        <div>
+          <label class="label" for="email">Email</label>
+          <input class="field" id="email" name="email" type="email" required maxlength="160" autocomplete="email" />
+        </div>
+        <div>
+          <label class="label" for="linkedin_url">LinkedIn profile <span class="font-normal text-ink-500">(optional)</span></label>
+          <input class="field" id="linkedin_url" name="linkedin_url" type="url" maxlength="300" placeholder="https://www.linkedin.com/in/..." />
+        </div>
+        <div class="hidden" aria-hidden="true">
+          <label for="website">Leave this empty</label>
+          <input id="website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+        <p class="text-sm text-ink-500">We'll only email you about this product. See our <a class="underline" href="/legal/privacy">privacy policy</a>.</p>
+        <button type="submit" class="btn-primary w-full">Join the waitlist</button>
+        <p data-status role="status" aria-live="polite" class="text-sm"></p>
+      </form>
+
+      <div id="waitlist-success" hidden tabindex="-1" class="mt-8 rounded-2xl border border-green-200 bg-green-50 p-8">
+        <h2 class="text-2xl font-bold">You're on the list!</h2>
+        <p class="mt-2 text-ink-700">We'll email you as soon as it's ready.</p>
+      </div>
+    </div>
+  </section>
+</Base>
+<script>
+  import { wireForm } from "../scripts/forms";
+  const form = document.getElementById("waitlist-form") as HTMLFormElement;
+  wireForm({
+    form,
+    url: form.action,
+    source: "founders_waitlist",
+    validate: () => (form.checkValidity() ? null : (form.reportValidity(), "Please fill in your name and email.")),
+  });
+</script>
