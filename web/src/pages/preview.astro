@@ -56,6 +56,11 @@ import { API_URL, CONTACT_EMAIL } from "../lib/config";
 <script>
   import { wireForm, isGoogleMapsLink } from "../scripts/forms";
   const form = document.getElementById("preview-form") as HTMLFormElement;
+  // After a plain (no-JavaScript) form post, the backend redirects back here with ?sent=1.
+  if (new URLSearchParams(location.search).has("sent")) {
+    form.hidden = true;
+    document.getElementById("preview-success")?.removeAttribute("hidden");
+  }
   wireForm({
     form,
     url: form.action,

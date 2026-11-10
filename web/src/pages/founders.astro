@@ -47,6 +47,11 @@ import { API_URL } from "../lib/config";
 <script>
   import { wireForm } from "../scripts/forms";
   const form = document.getElementById("waitlist-form") as HTMLFormElement;
+  // After a plain (no-JavaScript) form post, the backend redirects back here with ?sent=1.
+  if (new URLSearchParams(location.search).has("sent")) {
+    form.hidden = true;
+    document.getElementById("waitlist-success")?.removeAttribute("hidden");
+  }
   wireForm({
     form,
     url: form.action,
